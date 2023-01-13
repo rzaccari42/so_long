@@ -3,9 +3,7 @@ NAME = so_long
 SRCS = srcs/main.c
 OBJS = $(SRCS:.c=.o)
 
-PATH_MLX = includes/mlx/
-MLX = mlx.a
-MLXFLAGS = -I $(PATH_MLX) -L $(PATH_MLX) -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 CC = gcc
 OPTIONS = -c
@@ -20,8 +18,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo objects done!!
-	@make -C $(PATH_MLX)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(PATH_SRC)so_long.c $(OBJS) $(MLX) -o so_long
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(MLX) -o $(NAME)
 	@echo program done!
 
 clean:
