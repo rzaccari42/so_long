@@ -6,7 +6,7 @@
 /*   By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:00:50 by rzaccari          #+#    #+#             */
-/*   Updated: 2023/01/13 22:42:26 by rzaccari         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:18:40 by rzaccari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ int	main(void)
 	t_game data;
 	int	i;
 
+	i = 10;
 	data.mlx = mlx_init();
     data.mlx_win = mlx_new_window(data.mlx, 1920, 1080, "so_long");
-	//img.ptr = mlx_new_image(mlx, 1920, 1080);
-	//my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	data.mlx_mur = mlx_xpm_file_to_image(data.mlx, "./includes/wall-01.xpm", &i, &i);
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.mlx_mur, 50, 50);
+	//mlx_put_image_to_window(data.mlx, data.mlx_win, data.mlx_mur, 50, 50);
 	mlx_loop(data.mlx);
 }

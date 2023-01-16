@@ -7,7 +7,7 @@ MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 CC = gcc
 OPTIONS = -c
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 RM = rm -rf
 
