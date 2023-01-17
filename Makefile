@@ -1,31 +1,46 @@
 NAME = so_long
 
-SRCS = srcs/main.c
+ROOT_DIR ?= $(shell pwd)
+SRCS_DIR = ${ROOT_DIR}/srcs/
+SRCS = $(addprefix ${SRCS_DIR}, main.c map.c) 
 OBJS = $(SRCS:.c=.o)
 
-MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
+// MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
+LIBFT			=		./libft/libft.a
+MLXLIB			=		./mlx/libmlx.a
+MINILBX			=		-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLIBFT			=		$(MAKE) -C libft
+MMLX			=		$(MAKE) -C mlx
+
 
 CC = gcc
 OPTIONS = -c
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-
+CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS += -g3 -fsanitize=address
 RM = rm -rf
 
-all: $(NAME)
+all: lib $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -Imlx $(OPTIONS) $(<) -o $(<:.c=.o)
+lib:
+			@$(MLIBFT) all
+			@$(MMLX) all
+
+%.o:		%.c ./libft/libft.h Makefile so_long.h
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@echo objects done!!
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(MLX) -o $(NAME)
-	@echo program done!
+			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${MLXLIB} ${MINILBX}
+			@echo compil done!
 
 clean:
-	$(RM) -f $(OBJS)
+			${RM} ${OBJS}
+			cd libft && make clean
+			cd mlx && make clean
 
-fclean: clean
-	$(RM) -f $(CLIENT)
+fclean:		clean
+			@${RM} ${NAME}
+			@cd libft && make fclean
+			@cd mlx && make clean
 
 
 re: fclean all

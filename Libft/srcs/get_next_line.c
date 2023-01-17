@@ -6,7 +6,7 @@
 /*   By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:27:55 by rzaccari          #+#    #+#             */
-/*   Updated: 2023/01/16 15:45:00 by rzaccari         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:28:09 by rzaccari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 	buffer[read_bytes] = '\0';
 	while (read_bytes > 0)
 	{
-		string[fd] = ft_strjoin(string[fd], buffer);
+		string[fd] = ft_gnl_strjoin(string[fd], buffer);
 		if (has_line(string[fd]) == 1)
 			break ;
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
@@ -54,11 +54,11 @@ char	*get_line(char **str, int fd)
 	}
 	while (str[fd][i] != '\0' && str[fd][i] != '\n')
 		i++;
-	line = ft_strndup(str[fd], 0, i);
+	line = ft_gnl_strndup(str[fd], 0, i);
 	if (has_line(str[fd]) == 0)
 		temp = NULL;
 	else
-		temp = ft_strndup(str[fd], i + 1, ft_strlen(str[fd]));
+		temp = ft_gnl_strndup(str[fd], i + 1, ft_gnl_strlen(str[fd]));
 	free(str[fd]);
 	str[fd] = temp;
 	return (line);
@@ -77,3 +77,15 @@ int	has_line(char *str)
 	}
 	return (0);
 }
+
+// #include <fcntl.h>
+
+// int main(void)
+// {
+// 	int fd = open("../../includes/maps/map.ber", O_RDONLY);
+// 	printf("fd:%d\n", fd);
+// 	char	*tmp = get_next_line(fd);
+// 	printf("%s", tmp);
+// 	free(tmp);
+// 	close(fd);
+// }

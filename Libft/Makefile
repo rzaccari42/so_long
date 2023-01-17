@@ -6,7 +6,7 @@
 #    By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/06 20:10:32 by imorina           #+#    #+#              #
-#    Updated: 2023/01/16 15:58:29 by rzaccari         ###   ########.fr        #
+#    Updated: 2023/01/17 20:28:45 by rzaccari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS		= $(addprefix ${SRCS_DIR}, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isasc
 			ft_strncmp.c ft_strndup.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c \
 			ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 			ft_lstnew.c ft_lstadd_front.c ft_lstadd_back.c ft_lstsize.c ft_lstlast.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
-			get_next_line.c)			 
+			get_next_line.c get_next_line_utils.c)			 
 OBJS		= ${SRCS:.c=.o};
 
 CC 			= gcc

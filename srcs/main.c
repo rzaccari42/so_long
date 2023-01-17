@@ -6,55 +6,31 @@
 /*   By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:00:50 by rzaccari          #+#    #+#             */
-/*   Updated: 2023/01/16 14:18:40 by rzaccari         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:35:31 by rzaccari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "../includes/so_long.h"
 
-typedef struct game
+int	close_window(t_maps *map)
 {
-	char	*map;
-	int		i;
-	int		carater;
-	int		colone;
-	int		colone_temp;
-	int		ligne;
-	int		ligne_temp;
-	int		player;
-	int		diams;
-	int		exit;
-	int		erreur;
-	void	*mlx;
-	void	*mlx_win;
-	void	*mlx_player;
-	void	*mlx_mur;
-	void	*mlx_sol;
-	void	*mlx_vide;
-	void	*mlx_diams;
-	void	*mlx_door;
-}	t_game;
+	(void)map;
+	exit(0);
+}
 
 
-/*void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->pixels + (y * img->line_size + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
 
 int	main(void)
 {
-	t_game data;
+	t_maps map;
 	int	i;
 
 	i = 10;
-	data.mlx = mlx_init();
-    data.mlx_win = mlx_new_window(data.mlx, 1920, 1080, "so_long");
-	data.mlx_mur = mlx_xpm_file_to_image(data.mlx, "./includes/wall-01.xpm", &i, &i);
-	//mlx_put_image_to_window(data.mlx, data.mlx_win, data.mlx_mur, 50, 50);
-	mlx_loop(data.mlx);
+	display_map();
+	map.mlx = mlx_init();
+    map.mlx_win = mlx_new_window(map.mlx, 1920, 1080, "so_long");
+	load_img(&map);
+	put_img(&map, 64, 64, map.img_wall);//revoir pq avec & devant l'image ca passe ap.
+	mlx_hook(map.mlx_win, 17, 1L << 0, close_window, &map);
+	mlx_loop(map.mlx);
 }

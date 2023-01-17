@@ -6,7 +6,7 @@
 /*   By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 23:42:28 by rzaccari          #+#    #+#             */
-/*   Updated: 2023/01/16 15:54:13 by rzaccari         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:26:39 by rzaccari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 char	*get_line(char **str, int fd);
 int		has_line(char *str);
+char	*ft_gnl_strndup(char *str, int start, int end);
+char	*ft_gnl_strjoin(char *str1, char *str2);
+int		ft_gnl_strlen(char *str);
+
 #endif
