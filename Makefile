@@ -2,7 +2,7 @@ NAME = so_long
 
 ROOT_DIR ?= $(shell pwd)
 SRCS_DIR = ${ROOT_DIR}/srcs/
-SRCS = $(addprefix ${SRCS_DIR}, main.c map.c) 
+SRCS = $(addprefix ${SRCS_DIR}, main.c map.c aff.c move.c check.c check_map.c) 
 OBJS = $(SRCS:.c=.o)
 
 // MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
