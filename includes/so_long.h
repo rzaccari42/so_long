@@ -28,7 +28,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../mlx/mlx.h"
-# include "../libft/includes/libft.h"
+# include "../Libft/includes/libft.h"
 
 typedef struct maps
 {
