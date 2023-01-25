@@ -6,7 +6,7 @@
 /*   By: rzaccari <rzaccari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 23:42:28 by rzaccari          #+#    #+#             */
-/*   Updated: 2023/01/17 20:26:39 by rzaccari         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:34:59 by rzaccari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # endif
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 /*
 ** LINKED LISTS STRUCTURE DEFINITION
@@ -33,6 +34,15 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }t_list;
+
+/*
+** FT_PRINTF STRUCTURE DEFINITION
+*/
+typedef struct input
+{
+	va_list	arguments;
+	int		char_count;
+}	t_input;
 
 /*
 ** MANDATORY LIBFT FUNCTIONS
@@ -85,6 +95,30 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/*
+** FT_PRINTF FUNCTIONS
+*/
+int		ft_printf(const char *input, ...);
+void	format(t_input *args, char c);
+void	format_c(t_input *args);
+void	format_s(t_input *args);
+void	format_p(t_input *args);
+void	format_d(t_input *args);
+void	format_i(t_input *args);
+void	format_u(t_input *args);
+void	format_x_lower(t_input *args);
+void	format_x_upper(t_input *args);
+void	format_pc(t_input *args);
+int		nbrlen_dec(int nbr);
+int		nbrlen_unsigned(unsigned int nbr);
+int		nbrlen_hex(unsigned int nbr);
+int		nbrlen_hex_p(unsigned long long nbr);
+char	*ft_itoa(int nbr);
+char	*itoa_unsigned(unsigned int nbr);
+char	*itoa_hex_lower(unsigned int nbr);
+char	*itoa_hex_upper(unsigned int nbr);
+char	*itoa_hex_p(unsigned long long nbr);
 
 /*
 ** GET_NEXT_LINE FUNCTIONS
