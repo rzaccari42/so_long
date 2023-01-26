@@ -47,6 +47,19 @@ void	check_amount(t_maps *maps, int i, int j)
 		recursive_path(maps, j, i);
 	}
 }
+static void free_table(char **table)
+{
+	int	i;
+
+	i = 0;
+	while (table[i])
+	{
+		printf("table: %p %s\n", table[i], table[i]);
+		free (table[i]);
+		++i;
+	}
+	free(table);
+}
 
 void	check_coins(t_maps *maps)
 {
@@ -72,6 +85,7 @@ void	check_coins(t_maps *maps)
 		ft_printf("La map n'est pas faisable...\nClosing...");
 		close_window(maps);
 	}
+	free_table(maps->map_data);
 	load_map(maps, maps->file);
 }
 

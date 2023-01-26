@@ -38,21 +38,21 @@ int	get_map_height(t_maps *map, char **argv)
 int	get_map_width(t_maps *map, char **argv)
 {
 	int		fd;
-	int		collumn_count;
+	int		column_count;
 	char	*tmp;
 
-	collumn_count = 0;
+	column_count = 0;
 	fd = open(argv[1], O_RDONLY);
 	tmp = get_next_line(fd);
 	if (tmp == NULL)
 		return (1);
-	while (tmp[collumn_count])
+	while (tmp[column_count])
 	{
-		collumn_count++;
+		column_count++;
 	}
 	free(tmp);
 	close(fd);
-	map->map_width = collumn_count - 1;
+	map->map_width = column_count - 1;
 	return (0);
 }
 
